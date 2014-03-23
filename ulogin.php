@@ -189,8 +189,15 @@ function ulogin_parse_request() {
 			wp_set_auth_cookie($user_id);
 
             //правка от 12.09.2013: возврат на исходную страницу после авторизации
-            $redirect_to = !empty( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : $_REQUEST['REQUEST_URI'];
+            $redirect_to = $_SERVER['REQUEST_URI'];
+            if (!empty($_REQUEST['redirect_to'])) {
+                $redirect_to = $_REQUEST['redirect_to'];
+            } elseif (is_user_logged_in() and ulogin_is_login_page()) {
+                $redirect_to = user_admin_url();
+            }
+
             wp_redirect($redirect_to);
+            // TODO: after redirect no data should be shown
 		}
 	}
 }
@@ -288,4 +295,10 @@ function get_user_from_token($token = false)
 
 }
 
-?>
+/**
+ * Determines whether user is on Login page
+ * @return bool
+ */
+function ulogin_is_login_page() {
+    return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+}
