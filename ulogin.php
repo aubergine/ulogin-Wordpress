@@ -82,9 +82,9 @@ function ulogin_div($id) {
     $panel = '';
     if (is_array($ulOptions)){
         if ($ulOptions['display'] != 'window')
-            $panel = '<div style="float:left;line-height:24px">'.$ulOptions['label'].'&nbsp;</div><div id="'.$id.'" style="float:left"></div><div style="clear:both"></div>';
+            $panel = '<div style="float:left;line-height:24px">'.$ulOptions['label'].'&nbsp;</div><div id="'.$id.'" style="float:left"></div><div style="clear:left"></div>';
         else
-            $panel = '<div style="float:left;line-height:24px">'.$ulOptions['label'].'&nbsp;</div><a href="#" id="'.$id.'" style="float:left"><img src="http://ulogin.ru/img/button.png" width=187 height=30 alt="МультиВход"/></a><div style="clear:both"></div>';
+            $panel = '<div style="float:left;line-height:24px">'.$ulOptions['label'].'&nbsp;</div><a href="#" id="'.$id.'" style="float:left"><img src="http://ulogin.ru/img/button.png" width=187 height=30 alt="МультиВход"/></a><div style="clear:left"></div>';
     }
     return $panel ;
 }
